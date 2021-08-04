@@ -4,12 +4,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +27,10 @@ public class CandidateController {
     @ApiOperation(("Gets all the Candidates"))
     public DataResult<List<Candidate>> getAll(){
         return this.candidateService.getAll();
+    }
+
+    @PostMapping("/add")
+    public Result add(@RequestBody Candidate candidate){
+        return this.candidateService.add(candidate);
     }
 }
