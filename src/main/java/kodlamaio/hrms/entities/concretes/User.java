@@ -3,7 +3,6 @@ package kodlamaio.hrms.entities.concretes;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Data
 @Entity
@@ -25,7 +24,7 @@ public class User {
     private String passwordRepeat;
 
     @Column(name = "created_date")
-    private Date create_date;
+    private String create_date;
 
     @Column(name = "is_activated")
     private boolean isActivated;

@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
+import kodlamaio.hrms.core.utilities.DateTimeClass;
 import kodlamaio.hrms.core.utilities.EmailChecker;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.core.validationServices.mailValidation.MailValidationService;
@@ -10,6 +11,7 @@ import kodlamaio.hrms.entities.concretes.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -34,7 +36,7 @@ public class CandidateManager implements CandidateService {
     @Override
     public Result add(Candidate candidate) {
 
-        if(nullControl(candidate)) return new ErrorResult("Alanlar bos birakilamaz");
+        if(!nullControl(candidate)) return new ErrorResult("Alanlar bos birakilamaz");
 
         if(!EmailChecker.checkEmail(candidate.getEmail())) return new ErrorResult("Girilen email hatali"); // validation servislerinde polimorphism kullanilmali
 
@@ -46,6 +48,8 @@ public class CandidateManager implements CandidateService {
 
         if(!mailValidationService.validate(candidate.getEmail()).isSuccess()) return new ErrorResult("Mail dogrulamasi basarisiz");
 
+
+        candidate.setCreate_date(Long.toString(System.currentTimeMillis()));
         candidateDao.save(candidate);
         return new SuccessResult(candidate.getEmail() + " : Sisteme kaydoldu");
     }
