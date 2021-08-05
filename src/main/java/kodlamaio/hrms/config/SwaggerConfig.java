@@ -21,7 +21,7 @@ public class SwaggerConfig {
     private static final String SWAGGER_API_VERSION = "1.0";
     private static final String LICENSE_TEXT = "License";
     private static final String title = "HRMS REST API";
-    private static final String description = "RESTful API for Candidates";
+    private static final String description = "RESTful API for Human Resource Management System";
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()

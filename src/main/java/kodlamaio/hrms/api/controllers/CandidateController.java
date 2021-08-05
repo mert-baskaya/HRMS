@@ -16,7 +16,7 @@ import java.util.List;
 @Api(value = "ProductsControllerApi", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequestMapping("/api/candidates")
 public class CandidateController {
-    private CandidateService candidateService;
+    private final CandidateService candidateService;
 
     @Autowired
     public CandidateController(CandidateService candidateService) {

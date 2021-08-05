@@ -15,8 +15,11 @@ import java.util.List;
 @Service
 public class StaffManager implements StaffService {
 
-    @Autowired
-    private StaffDao staffDao;
+    private final StaffDao staffDao;
+
+    public StaffManager(StaffDao staffDao) {
+        this.staffDao = staffDao;
+    }
 
     @Override
     public DataResult<List<Staff>> getAll() {

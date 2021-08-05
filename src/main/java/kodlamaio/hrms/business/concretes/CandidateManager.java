@@ -15,9 +15,9 @@ import java.util.List;
 @Service
 public class CandidateManager implements CandidateService {
 
-    private CandidateDao candidateDao;
-    private UserNationalIdValidationService nationalIdValidationService;
-    private MailValidationService mailValidationService;
+    private final CandidateDao candidateDao;
+    private final UserNationalIdValidationService nationalIdValidationService;
+    private final MailValidationService mailValidationService;
 
     @Autowired
     public CandidateManager(CandidateDao candidateDao, UserNationalIdValidationService nationalIdValidationService, MailValidationService mailValidationService) {
