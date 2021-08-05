@@ -10,13 +10,8 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Candidates")
+@Table(name = "candidates")
 public class Candidate extends User{
-
-    @Id
-    @GeneratedValue
-    @Column(name = "candidate_id")
-    private int id;
 
     @Column(name = "first_name")
     private String firstName;

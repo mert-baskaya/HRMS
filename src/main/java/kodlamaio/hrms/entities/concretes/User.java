@@ -1,32 +1,36 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Data
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name = "Users")
-public class User {
+@MappedSuperclass
+public abstract class User {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "user_id")
+    @JsonIgnore
     private int id;
 
     @Column(name = "email")
-    private String email; //sql date aliyor test etmek lazim
+    private String email;
 
     @Column(name = "password")
     private String password;
 
+    @Transient
     private String passwordRepeat;
 
     @Column(name = "created_date")
+    @JsonIgnore
     private String create_date;
 
-    @Column(name = "is_activated")
+    @Column(name = "is_activated",columnDefinition = "default false")
+    @JsonIgnore //nasil aktive edilecegi konusunda soru isaretleri var
     private boolean isActivated;
+
 
 }
