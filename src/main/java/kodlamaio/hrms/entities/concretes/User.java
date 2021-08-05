@@ -41,10 +41,14 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private List<Staff> staffSet;
+    private List<Staff> staff;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private List<Candidate> candidateSet;
+    private List<Candidate> candidates;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Employer> employers;
 
 }
