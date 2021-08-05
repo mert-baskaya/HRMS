@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface CandidateDao extends JpaRepository<Candidate, Integer> {
-    boolean existsByEmail(String email);
+    boolean existsByUser_Email(String email);
     boolean existsByNationalIdentityNumber(String nationalIdentityNumber);
 }

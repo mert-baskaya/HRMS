@@ -36,32 +36,29 @@ public class CandidateManager implements CandidateService {
 
         if(!nullControl(candidate)) return new ErrorResult("Alanlar bos birakilamaz");
 
-        if(!EmailChecker.checkEmail(candidate.getEmail())) return new ErrorResult("Girilen email hatali"); // validation servislerinde polimorphism kullanilmali
+        if(!EmailChecker.checkEmail(candidate.getUser().getEmail())) return new ErrorResult("Girilen email hatali"); // validation servislerinde polimorphism kullanilmali
 
-        if(candidateDao.existsByEmail(candidate.getEmail())) return new ErrorResult("Email sisteme kaydolmus");
+        if(candidateDao.existsByUser_Email(candidate.getUser().getEmail())) return new ErrorResult("Email sisteme kaydolmus");
 
         if(candidateDao.existsByNationalIdentityNumber(candidate.getNationalIdentityNumber())) return new ErrorResult("Tc kimlik numarasi sisteme kaydolmus");
 
         if(!nationalIdValidationService.validate(candidate.getNationalIdentityNumber(), candidate.getFirstName(), candidate.getLastName(), candidate.getBirthYear()).isSuccess()) return new ErrorResult("Kullanici kimligi dogrulanamadi");
 
-        if(!mailValidationService.validate(candidate.getEmail()).isSuccess()) return new ErrorResult("Mail dogrulamasi basarisiz");
+        if(!mailValidationService.validate(candidate.getUser().getEmail()).isSuccess()) return new ErrorResult("Mail dogrulamasi basarisiz");
 
 
-        candidate.setCreate_date(Long.toString(System.currentTimeMillis()));
+        candidate.getUser().setCreate_date(Long.toString(System.currentTimeMillis()));
         candidateDao.save(candidate);
-        return new SuccessResult(candidate.getEmail() + " : Sisteme kaydoldu");
+        return new SuccessResult(candidate.getUser().getEmail() + " : Sisteme kaydoldu");
     }
 
     private boolean nullControl(Candidate candidate) {
-        if (candidate.getFirstName() == null ||
-                candidate.getLastName() == null ||
-                candidate.getNationalIdentityNumber() == null ||
-                candidate.getBirthYear() == null ||
-                candidate.getEmail() == null ||
-                candidate.getPassword() == null ||
-                candidate.getPasswordRepeat() == null) {
-            return false;
-        }
-        return true;
+        return candidate.getFirstName() != null &&
+                candidate.getLastName() != null &&
+                candidate.getNationalIdentityNumber() != null &&
+                candidate.getBirthYear() != null &&
+                candidate.getUser().getEmail() != null &&
+                candidate.getUser().getPassword() != null &&
+                candidate.getUser().getPasswordRepeat() != null;
     }
 }

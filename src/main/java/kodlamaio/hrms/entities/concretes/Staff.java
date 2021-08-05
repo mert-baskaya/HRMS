@@ -11,26 +11,14 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "candidates")
-public class Candidate {
+@Table(name = "staff")
+public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    @Column(name = "candidate_id")
-    private int candidateId;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "national_identity_number")
-    private String nationalIdentityNumber;
-
-    @Column(name = "birth_year")
-    private String birthYear;
+    @Column(name = "staff_id")
+    private int staffId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

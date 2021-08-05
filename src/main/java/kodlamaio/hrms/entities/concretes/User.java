@@ -1,16 +1,22 @@
 package kodlamaio.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
-@MappedSuperclass
-public abstract class User {
+@Entity
+@Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     @JsonIgnore
     private int id;
@@ -21,6 +27,7 @@ public abstract class User {
     @Column(name = "password")
     private String password;
 
+    // TODO istenmeyen bir field'ın GET'te görünmesini engellemenin bir yolunu bul
     @Transient
     private String passwordRepeat;
 
@@ -28,9 +35,16 @@ public abstract class User {
     @JsonIgnore
     private String create_date;
 
-    @Column(name = "is_activated",columnDefinition = "default false")
+    @Column(name = "is_frozen")
     @JsonIgnore //nasil aktive edilecegi konusunda soru isaretleri var
-    private boolean isActivated;
+    private boolean isFrozen;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Staff> staffSet;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Candidate> candidateSet;
 
 }
