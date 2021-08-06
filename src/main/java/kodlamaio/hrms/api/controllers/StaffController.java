@@ -17,8 +17,12 @@ import java.util.List;
 @RequestMapping("/api/staff")
 public class StaffController {
 
+    private final StaffService staffService;
+
     @Autowired
-    private StaffService staffService;
+    public StaffController(StaffService staffService) {
+        this.staffService = staffService;
+    }
 
     @GetMapping("/getAll")
     @ApiOperation("Gets all the Staff")
