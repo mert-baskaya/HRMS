@@ -28,7 +28,7 @@ public class StaffManager implements StaffService {
 
     @Override
     public Result add(Staff staff) {
-        this.staffDao.save(staff);
+        this.staffDao.saveAndFlush(staff);
         return new SuccessResult("Personel eklendi: " + staff.getUser().getEmail());
     }
 }
