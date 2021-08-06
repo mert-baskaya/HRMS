@@ -5,7 +5,11 @@ import io.swagger.annotations.ApiOperation;
 import kodlamaio.hrms.business.abstracts.StaffService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.core.validationServices.staffValidation.StaffValidationService;
+import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.concretes.Staff;
+import kodlamaio.hrms.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +23,12 @@ public class StaffController {
 
     private final StaffService staffService;
 
+    private final StaffValidationService validationService;
+
     @Autowired
-    public StaffController(StaffService staffService) {
+    public StaffController(StaffService staffService, StaffValidationService validationService) {
         this.staffService = staffService;
+        this.validationService = validationService;
     }
 
     @GetMapping("/getAll")
@@ -34,4 +41,12 @@ public class StaffController {
     public Result add(@RequestBody Staff staff){
         return this.staffService.add(staff);
     }
+
+    @PostMapping("acivateEmployerByMail")
+    public Result activateEmployerByMail(@RequestBody String email){
+
+        return validationService.activateEmployer(email);
+
+    }
+
 }
