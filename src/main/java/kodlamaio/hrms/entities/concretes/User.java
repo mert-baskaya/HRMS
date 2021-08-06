@@ -36,7 +36,7 @@ public class User {
     @JsonIgnore
     private String create_date;
 
-    @Column(name = "is_frozen")
+    @Column(name = "is_frozen",columnDefinition = "default = true")
     @JsonIgnore //nasil aktive edilecegi konusunda soru isaretleri var
     private boolean isFrozen;
 
