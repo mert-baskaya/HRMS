@@ -17,6 +17,7 @@ public class StaffManager implements StaffService {
 
     private final StaffDao staffDao;
 
+    @Autowired
     public StaffManager(StaffDao staffDao) {
         this.staffDao = staffDao;
     }

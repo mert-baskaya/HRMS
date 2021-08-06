@@ -26,7 +26,7 @@ public class Employer {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
 

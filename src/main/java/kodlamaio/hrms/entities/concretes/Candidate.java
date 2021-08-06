@@ -32,7 +32,7 @@ public class Candidate {
     @Column(name = "birth_year")
     private String birthYear;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
 

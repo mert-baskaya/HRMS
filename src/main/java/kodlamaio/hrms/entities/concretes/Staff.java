@@ -20,7 +20,7 @@ public class Staff {
     @Column(name = "staff_id")
     private int staffId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
 
