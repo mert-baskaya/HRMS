@@ -7,5 +7,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmployerDao extends JpaRepository<Employer, Integer> {
-    boolean existsEmployerByEmail(String email);
+
+    Employer getByEmail(String email);
+
+    boolean existsByEmail(String email);
+
 }

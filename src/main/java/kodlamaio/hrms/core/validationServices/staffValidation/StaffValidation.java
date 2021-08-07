@@ -15,6 +15,7 @@ public class StaffValidation implements StaffValidationService{
 
     @Override
     public Result activateEmployer(String email) {
+        //Acaba bunun business ile konuşması mı yoksa kendi içinde mi yapması daha doğru bilemedim
         return employerManager.approveEmployerByEmail(email);
     }
 }

@@ -52,7 +52,16 @@ public class EmployerManager implements EmployerService {
 
     @Override
     public Result approveEmployerByEmail(String email) {
-        return new ErrorResult("deneme");
+
+        if(!employerDao.existsByEmail(email)) return new ErrorResult("Email sisteme kayitli degil");
+
+        Employer employer = employerDao.getByEmail(email);
+
+        employer.setActivatedByStaff(true);
+
+        employerDao.save(employer);
+
+        return new SuccessResult("Aktivasyon basarili");
     }
 
     private boolean nullControl(Employer employer){
