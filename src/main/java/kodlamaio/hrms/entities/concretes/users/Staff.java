@@ -1,21 +1,21 @@
 package kodlamaio.hrms.entities.concretes.users;
 
 import kodlamaio.hrms.entities.concretes.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
 @Entity
-
 public class Staff extends User {
 
-    private int administrationLevel;
+    @Column(name = "admin_level", columnDefinition = "integer default 0")
+    private int adminLevel;
 
 }

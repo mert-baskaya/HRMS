@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.StaffService;
 import kodlamaio.hrms.core.utilities.results.*;
+import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.dataAccess.abstracts.user.StaffDao;
 import kodlamaio.hrms.entities.concretes.users.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,12 @@ public class StaffManager implements StaffService {
 
     private final StaffDao staffDao;
 
+    private final UserDao userDao;
+
     @Autowired
-    public StaffManager(StaffDao staffDao) {
+    public StaffManager(StaffDao staffDao, UserDao userDao) {
         this.staffDao = staffDao;
+        this.userDao = userDao;
     }
 
     @Override
@@ -27,11 +31,9 @@ public class StaffManager implements StaffService {
     @Override
     public Result add(Staff staff) {
 
-        /*
-        this.staffDao.saveAndFlush(staff);
-        return new SuccessResult("Personel eklendi: " + staff.getUser().getEmail());
-         */
+        if(userDao.existsUserByEmail(staff.getEmail())) return new ErrorResult("Email sisteme daha önce kaydolmuş");
 
-        return new ErrorResult("deneme");
+        this.staffDao.save(staff);
+        return new SuccessResult("Personel eklendi: " + staff.getEmail());
     }
 }

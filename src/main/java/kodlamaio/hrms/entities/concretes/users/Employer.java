@@ -1,18 +1,16 @@
 package kodlamaio.hrms.entities.concretes.users;
 
 import kodlamaio.hrms.entities.concretes.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
 @Entity
-
 public class Employer extends User {
 
     @Column(name = "web_adress")

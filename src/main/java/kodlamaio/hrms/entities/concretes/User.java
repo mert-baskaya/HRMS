@@ -119,18 +119,22 @@ public class User {
     @JsonIgnore
     private int id;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     // TODO istenmeyen bir field'ın GET'te görünmesini engellemenin bir yolunu bul
     @Transient
     private String passwordRepeat;
 
-    @Column(name = "created_date")
     @JsonIgnore
+    @Column(name = "created_date")
     private String create_date;
+
+    @JsonIgnore
+    @Column(name = "is_activated_by_staff", columnDefinition = "default false")
+    private boolean isActivatedByStaff;
 
 }
