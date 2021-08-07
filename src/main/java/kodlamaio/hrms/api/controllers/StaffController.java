@@ -5,11 +5,8 @@ import io.swagger.annotations.ApiOperation;
 import kodlamaio.hrms.business.abstracts.StaffService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.validationServices.staffValidation.StaffValidationService;
-import kodlamaio.hrms.entities.concretes.Employer;
-import kodlamaio.hrms.entities.concretes.Staff;
-import kodlamaio.hrms.entities.concretes.User;
+import kodlamaio.hrms.entities.concretes.users.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -44,9 +41,7 @@ public class StaffController {
 
     @PostMapping("acivateEmployerByMail")
     public Result activateEmployerByMail(@RequestBody String email){
-
         return validationService.activateEmployer(email);
-
     }
 
 }

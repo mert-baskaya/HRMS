@@ -1,12 +1,11 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
-import kodlamaio.hrms.core.utilities.EmailChecker;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.core.validationServices.mailValidation.MailValidationService;
 import kodlamaio.hrms.core.validationServices.userValidation.UserNationalIdValidationService;
-import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
-import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.dataAccess.abstracts.user.CandidateDao;
+import kodlamaio.hrms.entities.concretes.users.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,7 @@ public class CandidateManager implements CandidateService {
 
     @Override
     public Result add(Candidate candidate) {
-
+        /*
         if(!nullControl(candidate)) return new ErrorResult("Alanlar bos birakilamaz");
 
         if(!EmailChecker.checkEmail(candidate.getUser().getEmail())) return new ErrorResult("Girilen email hatali"); // validation servislerinde polimorphism kullanilmali
@@ -50,8 +49,12 @@ public class CandidateManager implements CandidateService {
         candidate.getUser().setCreate_date(Long.toString(System.currentTimeMillis()));
         candidateDao.save(candidate);
         return new SuccessResult(candidate.getUser().getEmail() + " : Sisteme kaydoldu");
-    }
+        */
 
+        return new ErrorResult("deneme");
+
+    }
+    /*
     private boolean nullControl(Candidate candidate) {
         return candidate.getFirstName() != null &&
                 candidate.getLastName() != null &&
@@ -61,4 +64,5 @@ public class CandidateManager implements CandidateService {
                 candidate.getUser().getPassword() != null &&
                 candidate.getUser().getPasswordRepeat() != null;
     }
+     */
 }

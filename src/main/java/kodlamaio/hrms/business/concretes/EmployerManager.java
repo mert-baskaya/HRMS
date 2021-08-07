@@ -1,13 +1,11 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
-import kodlamaio.hrms.core.utilities.EmailChecker;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.core.validationServices.mailValidation.MailValidationService;
-import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
+import kodlamaio.hrms.dataAccess.abstracts.user.EmployerDao;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
-import kodlamaio.hrms.entities.concretes.Employer;
-import kodlamaio.hrms.entities.concretes.User;
+import kodlamaio.hrms.entities.concretes.users.Employer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +36,7 @@ public class EmployerManager implements EmployerService {
 
     @Override
     public Result add(Employer employer) {
-
+    /*
         if(!nullControl(employer)) return new ErrorResult("Alanlar bos birakilamaz");
 
         if(!EmailChecker.checkEmail(employer.getUser().getEmail())) return new ErrorResult("Girilen email hatali");
@@ -52,23 +50,17 @@ public class EmployerManager implements EmployerService {
         employer.getUser().setCreate_date(Long.toString(System.currentTimeMillis()));
         employerDao.save(employer);
         return new SuccessResult(employer.getUser().getEmail() + " : Sisteme kaydoldu");
+       */
+
+        return new ErrorResult("deneme");
 
     }
 
     @Override
     public Result approveEmployerByEmail(String email) {
-
-        if(!userDao.existsByEmail(email)) return new ErrorResult("Girilen email sisteme kayitli degil");
-
-        User user = userDao.getUserByEmail(email);
-
-        user.setFrozen(false);
-
-        userDao.saveAndFlush(user);
-
-        return new SuccessResult("Kullanıcı aktive edildi: " + email);
+        return new ErrorResult("deneme");
     }
-
+    /*
     private boolean nullControl(Employer employer){
         return employer.getUser().getEmail() != null &&
                 employer.getUser().getPassword() != null &&
@@ -76,6 +68,6 @@ public class EmployerManager implements EmployerService {
                 employer.getPhoneNumber() != null &&
                 employer.getWebAdress() != null;
     }
-
+    */
 
 }
