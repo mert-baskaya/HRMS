@@ -46,7 +46,6 @@ public class JobPosting {
 
     @NotNull
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "dd-mm-yyyy HH:mm")
     private Date applicationDeadline;
 
     @Column(columnDefinition = "boolean default false")
