@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class City {
     @Min(value = 2,message = "Şehir ismi en az 2 karakter olmalı")
     private String cityName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "city")
     private Set<JobPosting> jobPostings;
 
