@@ -2,7 +2,6 @@ package kodlamaio.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import kodlamaio.hrms.entities.concretes.users.Employer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +20,6 @@ import java.util.Date;
 @Entity
 @Table(name = "job_postings")
 
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","city, employer, jobPosition"})
 public class JobPosting {
 
     @Id
@@ -54,14 +52,17 @@ public class JobPosting {
     @Column(columnDefinition = "boolean default false")
     private boolean isActive;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Employer employer;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "job_position_id")
     private JobPosition jobPosition;
