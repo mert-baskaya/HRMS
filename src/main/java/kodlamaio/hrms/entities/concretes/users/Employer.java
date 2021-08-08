@@ -1,8 +1,10 @@
 package kodlamaio.hrms.entities.concretes.users;
 
+import kodlamaio.hrms.entities.concretes.JobPosting;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,5 +22,8 @@ public class Employer extends User {
 
     @Column(name = "is_activated_by_staff")
     private boolean isActivatedByStaff;
+
+    @OneToMany(mappedBy = "employer")
+    private Set<JobPosting> jobPostings;
 
 }
