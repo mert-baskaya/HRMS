@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.entities.concretes.JobPosting;
 import lombok.*;
 
@@ -14,6 +15,9 @@ import java.util.Set;
 @Entity
 public class Employer extends User {
 
+    @Column(name = "company_name")
+    private String companyName;
+
     @Column(name = "web_adress")
     private String webAdress;
 
@@ -23,6 +27,7 @@ public class Employer extends User {
     @Column(name = "is_activated_by_staff")
     private boolean isActivatedByStaff;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employer")
     private Set<JobPosting> jobPostings;
 
