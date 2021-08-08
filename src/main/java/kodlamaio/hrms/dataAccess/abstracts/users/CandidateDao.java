@@ -1,4 +1,4 @@
-package kodlamaio.hrms.dataAccess.abstracts.user;
+package kodlamaio.hrms.dataAccess.abstracts.users;
 
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import org.springframework.data.jpa.repository.JpaRepository;
