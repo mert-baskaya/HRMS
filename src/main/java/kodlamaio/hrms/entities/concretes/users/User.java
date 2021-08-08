@@ -134,7 +134,7 @@ public class User {
     private String create_date;
 
     @JsonIgnore
-    @Column(name = "is_activated_by_staff", columnDefinition = "default false")
+    @Column(name = "is_activated_by_staff", columnDefinition = "boolean default false")
     private boolean isActivatedByStaff;
 
 }
