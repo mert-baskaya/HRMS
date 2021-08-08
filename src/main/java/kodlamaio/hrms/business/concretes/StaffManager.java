@@ -2,8 +2,8 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.StaffService;
 import kodlamaio.hrms.core.utilities.results.*;
-import kodlamaio.hrms.dataAccess.abstracts.UserDao;
-import kodlamaio.hrms.dataAccess.abstracts.user.StaffDao;
+import kodlamaio.hrms.dataAccess.abstracts.users.UserDao;
+import kodlamaio.hrms.dataAccess.abstracts.users.StaffDao;
 import kodlamaio.hrms.entities.concretes.users.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

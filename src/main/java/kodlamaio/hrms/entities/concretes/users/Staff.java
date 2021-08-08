@@ -1,10 +1,8 @@
 package kodlamaio.hrms.entities.concretes.users;
 
-import kodlamaio.hrms.entities.concretes.User;
 import lombok.*;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Getter
