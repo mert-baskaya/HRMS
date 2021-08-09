@@ -52,7 +52,12 @@ public class JobPostingDto {
 
     @NotNull
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date releaseDate;
+
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date applicationDeadline;
 
     @JsonIgnore

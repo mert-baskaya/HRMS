@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface JobPostingDao extends JpaRepository<JobPosting, Integer> {
     List<JobPosting> getAllByIsActiveIsTrue();
-    List<JobPosting> getAllByIsActiveIsTrueOrderByReleaseDate();
-    List<JobPosting> getAllByEmployerCompanyName(String companyName);
+    List<JobPosting> getAllByIsActiveIsTrueOrderByApplicationDeadline();
+    List<JobPosting> getAllByEmployer_Id(int employerId);
 }
