@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class JobPostingListingDto {
+public class JobPostingWithEmployerAndJobPositionDto {
 
     private int id;
     private String companyName;
