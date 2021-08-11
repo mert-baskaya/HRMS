@@ -11,7 +11,7 @@ import kodlamaio.hrms.dataAccess.abstracts.users.CityDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.EmployerDao;
 import kodlamaio.hrms.entities.concretes.JobPosting;
 import kodlamaio.hrms.entities.concretes.dtos.JobPostingDto;
-import kodlamaio.hrms.entities.concretes.dtos.JobPostingListingDto;
+import kodlamaio.hrms.entities.concretes.dtos.JobPostingWithEmployerAndJobPositionDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class JobPostingManager implements JobPostingService {
         if(!cityDao.existsById(dto.getCityId())) return new ErrorResult("Şehir bulunamadı");
         else jobPosting.setCity(cityDao.getById(dto.getCityId()));
 
-        if(!jobPostingDao.existsById(dto.getJobPositionId())) return new ErrorResult("İş pozisyonu bulunamadı");
+        if(!jobPositionDao.existsById(dto.getJobPositionId())) return new ErrorResult("İş pozisyonu bulunamadı");
         else jobPosting.setJobPosition(jobPositionDao.getById(dto.getJobPositionId()));
 
         jobPosting.setJobDescription(dto.getJobDescription());
@@ -72,35 +72,40 @@ public class JobPostingManager implements JobPostingService {
     }
 
     @Override
-    public DataResult<List<JobPostingListingDto>> getAllActive() {
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllActive() {
         return new DataResult<>(jobPostingListingDtoList(jobPostingDao.getAllByIsActiveIsTrue()), true,"Veri getirildi");
     }
 
     @Override
-    public DataResult<List<JobPostingListingDto>> getAllByDeadline() {
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByDeadline() {
         return new DataResult<>(jobPostingListingDtoList(jobPostingDao.getAllByIsActiveIsTrueOrderByApplicationDeadline()), true,"Veri getirildi");
     }
 
     @Override
-    public DataResult<List<JobPostingListingDto>> getAllByEmployer(int employerId) {
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByEmployer(int employerId) {
         return new DataResult<>(jobPostingListingDtoList(jobPostingDao.getAllByEmployer_Id(employerId)), true,"Veri getirildi");
     }
 
-    private List<JobPostingListingDto> jobPostingListingDtoList(List<JobPosting> jobPostingList){
-        List<JobPostingListingDto> jobPostingListingDtos = new ArrayList<>();
-        JobPostingListingDto dto;
+    @Override
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByCompanyName(String companyName) {
+        return new DataResult<>(jobPostingDao.getAllByCompanyName(companyName), true, "Veri getirildi");
+    }
+
+    private List<JobPostingWithEmployerAndJobPositionDto> jobPostingListingDtoList(List<JobPosting> jobPostingList){
+        List<JobPostingWithEmployerAndJobPositionDto> jobPostingWithEmployerAndJobPositionDtos = new ArrayList<>();
+        JobPostingWithEmployerAndJobPositionDto dto;
 
         for (JobPosting posting : jobPostingList) {
-            dto = new JobPostingListingDto();
+            dto = new JobPostingWithEmployerAndJobPositionDto();
             dto.setId(posting.getId());
             dto.setCompanyName(posting.getEmployer().getCompanyName());
             dto.setJobTitle(posting.getJobPosition().getTitle());
             dto.setOpenPositions(posting.getOpenPositions());
             dto.setPublishDate(posting.getReleaseDate());
             dto.setAplicationDeadlineDate(posting.getApplicationDeadline());
-            jobPostingListingDtos.add(dto);
+            jobPostingWithEmployerAndJobPositionDtos.add(dto);
         }
-        return jobPostingListingDtos;
+        return jobPostingWithEmployerAndJobPositionDtos;
     }
 
 }
