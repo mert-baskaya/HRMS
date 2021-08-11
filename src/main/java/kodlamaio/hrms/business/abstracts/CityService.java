@@ -7,6 +7,7 @@ import kodlamaio.hrms.entities.concretes.City;
 import java.util.List;
 
 public interface CityService {
-    Result addCity(City city);
     DataResult<List<City>> getAll();
+    Result addCity(City city);
+    DataResult<City> getCityByName(String name);
 }

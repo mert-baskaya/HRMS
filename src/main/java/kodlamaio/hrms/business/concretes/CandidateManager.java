@@ -49,7 +49,7 @@ public class CandidateManager implements CandidateService {
 
         if(!mailValidationService.validate(candidate.getEmail()).isSuccess()) return new ErrorResult("Mail dogrulamasi basarisiz");
 
-        candidate.setCreate_date(Long.toString(System.currentTimeMillis()));
+        candidate.setCreateDate(Long.toString(System.currentTimeMillis()));
         candidateDao.save(candidate);
         return new SuccessResult(candidate.getEmail() + " : Sisteme kaydoldu");
 

@@ -8,7 +8,7 @@ import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.CityDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.EmployerDao;
 import kodlamaio.hrms.entities.concretes.dtos.JobPostingDto;
-import kodlamaio.hrms.entities.concretes.dtos.JobPostingListingDto;
+import kodlamaio.hrms.entities.concretes.dtos.JobPostingWithEmployerAndJobPositionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -37,23 +37,32 @@ public class JobPostingController {
         return jobPostingService.addJobPosting(dto);
     }
     @GetMapping("/getAllActive")
-    public DataResult<List<JobPostingListingDto>> getAllActive(){
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllActive(){
         return jobPostingService.getAllActive();
     }
 
     @GetMapping("getAllByDeadline")
-    public DataResult<List<JobPostingListingDto>> getAllByDeadline(){
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByDeadline(){
         return jobPostingService.getAllByDeadline();
     }
 
     @PostMapping("/getAllByEmployerId")
-    public DataResult<List<JobPostingListingDto>> getAllByEmployerId(@RequestBody int employerId){
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByEmployerId(@RequestBody int employerId){
         return jobPostingService.getAllByEmployer(employerId);
     }
 
     @PostMapping("/deactivate")
     public Result deactivateJobPosting(@RequestBody int jobPostingId){
         return jobPostingService.deactivatePosting(jobPostingId);
+    }
+
+    @GetMapping("/getAllCustom")
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllCustom(){
+        return jobPostingService.getAllCustom();
+    }
+    @PostMapping("/getAllByCompanyName")
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByCompanyName(String companyName, boolean isActive){
+        return jobPostingService.getAllByCompanyName(companyName, isActive);
     }
 
 }

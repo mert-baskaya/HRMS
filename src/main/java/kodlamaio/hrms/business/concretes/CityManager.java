@@ -30,6 +30,12 @@ public class CityManager implements CityService {
     }
 
     @Override
+    public DataResult<City> getCityByName(String name) {
+        if(!cityDao.existsCityByCityName(name)) return new ErrorDataResult<>(name + " Sistemde mevcut değil");
+        else return new SuccessDataResult<>(cityDao.getByCityName(name));
+    }
+
+    @Override
     public DataResult<List<City>> getAll() {
         return new SuccessDataResult<>(cityDao.findAll());
     }

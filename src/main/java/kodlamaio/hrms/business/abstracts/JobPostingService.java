@@ -2,9 +2,8 @@ package kodlamaio.hrms.business.abstracts;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.JobPosting;
 import kodlamaio.hrms.entities.concretes.dtos.JobPostingDto;
-import kodlamaio.hrms.entities.concretes.dtos.JobPostingListingDto;
+import kodlamaio.hrms.entities.concretes.dtos.JobPostingWithEmployerAndJobPositionDto;
 
 import java.util.List;
 
@@ -14,9 +13,14 @@ public interface JobPostingService {
 
     Result deactivatePosting(int jobPostingId);
 
-    DataResult<List<JobPostingListingDto>> getAllActive();
+    DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllActive();
 
-    DataResult<List<JobPostingListingDto>> getAllByDeadline();
+    DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByDeadline();
 
-    DataResult<List<JobPostingListingDto>> getAllByEmployer(int employerId);
+    DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByEmployer(int employerId);
+
+    DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllCustom();
+
+    DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByCompanyName(String companyName, boolean isActive);
+
 }

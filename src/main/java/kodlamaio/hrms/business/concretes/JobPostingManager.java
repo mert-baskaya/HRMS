@@ -1,10 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.JobPostingService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.ErrorResult;
-import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobPostingDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.CityDao;
@@ -87,8 +84,13 @@ public class JobPostingManager implements JobPostingService {
     }
 
     @Override
-    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByCompanyName(String companyName) {
-        return new DataResult<>(jobPostingDao.getAllByCompanyName(companyName), true, "Veri getirildi");
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllCustom() {
+        return new SuccessDataResult<>(jobPostingDao.getAllByActiveStatus(true)); //ileriye dönük
+    }
+
+    @Override
+    public DataResult<List<JobPostingWithEmployerAndJobPositionDto>> getAllByCompanyName(String companyName, boolean isActive) {
+        return new SuccessDataResult<>(jobPostingDao.getAllByCompanyName(companyName, isActive), "Veri getirildi");
     }
 
     private List<JobPostingWithEmployerAndJobPositionDto> jobPostingListingDtoList(List<JobPosting> jobPostingList){

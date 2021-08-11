@@ -32,6 +32,12 @@ public class EmployerManager implements EmployerService {
     }
 
     @Override
+    public DataResult<Employer> getEmployerByCompanyName(String companyName) {
+        if(!employerDao.existsByCompanyName(companyName)) return new ErrorDataResult<>(companyName + " Sistemde kayıtlı değil");
+        else return new SuccessDataResult<>(employerDao.getByCompanyName(companyName));
+    }
+
+    @Override
     public Result add(Employer employer) {
 
         if(!nullControl(employer)) return new ErrorResult("Alanlar bos birakilamaz");
@@ -44,7 +50,7 @@ public class EmployerManager implements EmployerService {
 
         if(!mailValidationService.validate(employer.getEmail()).isSuccess()) return new ErrorResult("Mail dogrulamasi basarisiz");
 
-        employer.setCreate_date(Long.toString(System.currentTimeMillis()));
+        employer.setCreateDate(Long.toString(System.currentTimeMillis()));
         employerDao.save(employer);
         return new SuccessResult(employer.getEmail() + " : Sisteme kaydoldu");
 

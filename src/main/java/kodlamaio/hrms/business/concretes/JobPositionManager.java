@@ -26,12 +26,18 @@ public class JobPositionManager implements JobPositonService {
     }
 
     @Override
-    public Result add(JobPosition jobPosition) {
+    public Result addPosition(JobPosition jobPosition) {
         if(jobPositionDao.existsByTitle(jobPosition.getTitle())){
             return new ErrorResult("Bu is pozisyonu daha once kaydedilmis");
         }else{
             jobPositionDao.save(jobPosition);
             return new SuccessResult(jobPosition.getTitle() + " Kaydedildi");
         }
+    }
+
+    @Override
+    public DataResult<JobPosition> getByTitle(String title) {
+        if(!jobPositionDao.existsByTitle(title)) return new ErrorDataResult<>(title + " Sistemde kayıtlı değil");
+        else return new SuccessDataResult<>(jobPositionDao.getByTitle(title));
     }
 }

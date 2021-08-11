@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface EmployerService {
     DataResult<List<Employer>> getAll();
+    DataResult<Employer> getEmployerByCompanyName(String companyName);
     Result add(Employer employer);
     Result approveEmployerByEmail(String email);
 }
