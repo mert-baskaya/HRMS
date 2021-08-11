@@ -13,7 +13,7 @@ import javax.persistence.Entity;
 @Entity
 public class Staff extends User {
 
-    @Column(name = "admin_level", columnDefinition = "integer default 0")
+    @Column(columnDefinition = "integer default 0")
     private int adminLevel;
 
 }

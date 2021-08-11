@@ -118,10 +118,10 @@ public class User {
     @Column(name = "user_id")
     private int id;
 
-    @Column(name = "email", nullable = false)
+    @Column(nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(nullable = false)
     private String password;
 
     // TODO istenmeyen bir field'ın GET'te görünmesini engellemenin bir yolunu bul
@@ -129,11 +129,10 @@ public class User {
     private String passwordRepeat;
 
     @JsonIgnore
-    @Column(name = "created_date")
-    private String create_date;
+    private String createDate;
 
     @JsonIgnore
-    @Column(name = "is_activated_by_staff", columnDefinition = "boolean default false")
+    @Column(columnDefinition = "boolean default false")
     private boolean isActivatedByStaff;
 
 }

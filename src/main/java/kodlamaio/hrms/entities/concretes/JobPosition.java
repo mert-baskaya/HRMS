@@ -20,7 +20,6 @@ public class JobPosition {
     @Column(name = "job_position_id")
     private int id;
 
-    @Column(name = "title")
     private String title;
 
     @JsonIgnore
