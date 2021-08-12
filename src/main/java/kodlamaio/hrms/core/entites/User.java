@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities.concretes.users;
+package kodlamaio.hrms.core.entites;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
