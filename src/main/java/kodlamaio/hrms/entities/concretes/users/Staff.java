@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes.users;
 
+import kodlamaio.hrms.core.entites.User;
 import lombok.*;
 
 import javax.persistence.Column;

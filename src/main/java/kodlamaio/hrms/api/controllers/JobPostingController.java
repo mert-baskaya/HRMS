@@ -5,7 +5,7 @@ import kodlamaio.hrms.business.abstracts.JobPostingService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
-import kodlamaio.hrms.dataAccess.abstracts.users.CityDao;
+import kodlamaio.hrms.dataAccess.abstracts.CityDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.EmployerDao;
 import kodlamaio.hrms.entities.concretes.dtos.JobPostingDto;
 import kodlamaio.hrms.entities.concretes.dtos.JobPostingWithEmployerAndJobPositionDto;

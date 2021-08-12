@@ -5,7 +5,7 @@ import kodlamaio.hrms.core.utilities.EmailChecker;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.core.validationServices.mailValidation.MailValidationService;
 import kodlamaio.hrms.dataAccess.abstracts.users.EmployerDao;
-import kodlamaio.hrms.dataAccess.abstracts.users.UserDao;
+import kodlamaio.hrms.core.dataAccess.UserDao;
 import kodlamaio.hrms.entities.concretes.users.Employer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

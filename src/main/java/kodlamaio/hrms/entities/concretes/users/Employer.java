@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import kodlamaio.hrms.core.entites.User;
 import kodlamaio.hrms.entities.concretes.JobPosting;
 import lombok.*;
 
