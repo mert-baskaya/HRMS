@@ -82,6 +82,9 @@ public class CandidateManager implements CandidateService {
             education.setSchool(schoolDao.getById(educationDto.getSchoolId()));
             education.setSchoolDepartment(schoolDepartmentDao.getById(educationDto.getDepartmentId()));
             education.setCandidate(candidateDao.getById(educationDto.getCandidateId()));
+            education.setEntryDate(educationDto.getEntryDate());
+            education.setGraduated(educationDto.isGraduated());
+            education.setGraduationDate(educationDto.getGraduationDate());
 
             educationDao.save(education);
             return new SuccessResult("Eğitim bilgisi eklendi");

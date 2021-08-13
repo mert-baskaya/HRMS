@@ -39,7 +39,6 @@ public class EducationDto {
     @NotBlank
     private Date entryDate;
 
-    @NotNull
     private Date graduationDate;
 
 }

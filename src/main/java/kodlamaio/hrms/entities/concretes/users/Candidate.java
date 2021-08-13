@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.core.entites.User;
 import kodlamaio.hrms.entities.concretes.cvDetails.educations.Education;
 import lombok.*;
@@ -25,6 +26,7 @@ public class Candidate extends User {
 
     //https://www.baeldung.com/jpa-many-to-many#1-modeling-relationship-attributes-1
 
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate")
     private Set<Education> educations;
 
