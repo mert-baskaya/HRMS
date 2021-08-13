@@ -1,6 +1,6 @@
 package kodlamaio.hrms.dataAccess.abstracts;
 
-import kodlamaio.hrms.entities.concretes.cvDetails.School;
+import kodlamaio.hrms.entities.concretes.cvDetails.educations.School;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SchoolDao extends JpaRepository<School, Integer> {

@@ -2,7 +2,7 @@ package kodlamaio.hrms.business.abstracts;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.cvDetails.School;
+import kodlamaio.hrms.entities.concretes.cvDetails.educations.School;
 
 import java.util.List;
 

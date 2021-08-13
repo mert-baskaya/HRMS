@@ -3,7 +3,7 @@ package kodlamaio.hrms.api.controllers;
 import kodlamaio.hrms.business.abstracts.SchoolService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.cvDetails.School;
+import kodlamaio.hrms.entities.concretes.cvDetails.educations.School;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

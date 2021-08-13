@@ -3,7 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import kodlamaio.hrms.business.abstracts.SchoolService;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.SchoolDao;
-import kodlamaio.hrms.entities.concretes.cvDetails.School;
+import kodlamaio.hrms.entities.concretes.cvDetails.educations.School;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

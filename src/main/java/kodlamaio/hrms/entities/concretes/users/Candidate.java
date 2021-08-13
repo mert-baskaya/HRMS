@@ -1,7 +1,7 @@
 package kodlamaio.hrms.entities.concretes.users;
 
 import kodlamaio.hrms.core.entites.User;
-import kodlamaio.hrms.entities.concretes.cvDetails.SchoolDetail;
+import kodlamaio.hrms.entities.concretes.cvDetails.educations.Education;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +26,6 @@ public class Candidate extends User {
     //https://www.baeldung.com/jpa-many-to-many#1-modeling-relationship-attributes-1
 
     @OneToMany(mappedBy = "candidate")
-    private Set<SchoolDetail> schoolDetails;
+    private Set<Education> educations;
 
 }
