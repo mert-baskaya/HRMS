@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities.concretes.cvDetails;
+package kodlamaio.hrms.entities.concretes.cvDetails.educations;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -26,13 +26,11 @@ public class School {
     @NotBlank
     private String schoolName;
 
-    @NotNull
-    @NotBlank
-    private String division;
-
-    @OneToMany(mappedBy = "school")
-    private Set<SchoolDetail> schoolDetails;
-
-    //TODO okul detayı ekleme
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "school_department_join",
+    joinColumns = @JoinColumn(name = "school_id"),
+    inverseJoinColumns = @JoinColumn(name = "department_id"))
+    private Set<SchoolDepartment> schoolDepartments;
 
 }

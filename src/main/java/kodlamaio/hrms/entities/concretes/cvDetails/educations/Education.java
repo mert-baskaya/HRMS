@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities.concretes.cvDetails;
+package kodlamaio.hrms.entities.concretes.cvDetails.educations;
 
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,8 @@ import java.util.Date;
 @NoArgsConstructor
 
 @Entity
-public class SchoolDetail {
+@Table(name = "educations")
+public class Education {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +32,10 @@ public class SchoolDetail {
     @JoinColumn(name = "school_id")
     private School school;
 
+    @ManyToOne
+    @JoinColumn(name = "school_department_id")
+    private SchoolDepartment schoolDepartment;
+
     @NotNull
     @NotBlank
     private boolean isGraduated;
@@ -39,6 +44,7 @@ public class SchoolDetail {
     @NotBlank
     private Date entryDate;
 
+    @NotNull
     private Date graduationDate;
 
 }
