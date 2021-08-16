@@ -1,4 +1,4 @@
-package kodlamaio.hrms.api.controllers;
+package kodlamaio.hrms.api.controllers.userControllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

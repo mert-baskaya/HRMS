@@ -7,12 +7,6 @@ import java.util.List;
 
 public interface EducationDao extends JpaRepository<Education, Integer> {
 
-    boolean existsSchoolDetailByCandidate_Id(int candidateId);
-
-    boolean existsSchoolDetailBySchool_Id(int schoolId);
-
-    List<Education> getSchoolDetailsByCandidate_Id(int candidateId);
-
-    List<Education> getSchoolDetailsBySchool_Id(int schoolId);
+    List<Education> getEducationsByCandidate_IdOrderByEntryDateDesc(int candidateId);
 
 }

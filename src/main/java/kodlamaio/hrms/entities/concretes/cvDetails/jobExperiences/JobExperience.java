@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities.concretes.cvDetails.educations;
+package kodlamaio.hrms.entities.concretes.cvDetails.jobExperiences;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -18,8 +19,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "educations")
-public class Education {
+@Table(name = "job_experiences")
+public class JobExperience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,23 +31,20 @@ public class Education {
     @JoinColumn(name = "user_id")
     private Candidate candidate;
 
-    @NotBlank(message = "Okul ismi boş olamaz")
-    private String schoolName;
+    @NotBlank(message = "Firma ismi boş olamaz")
+    private String companyName;
 
-    @NotBlank(message = "Bölüm boş olamaz")
-    private String schoolDepartmentName;
+    @NotBlank(message = "İş pozisyonu boş olamaz")
+    private String jobPosition;
 
-    @NotNull(message = "Mezuniyet bilgisi boş olamaz (örn: true veya false)")
-    private boolean isGraduated;
-
-    //https://vladmihalcea.com/whats-new-in-jpa-2-2-java-8-date-and-time-types/
-    //https://www.baeldung.com/jpa-java-time#after-java-8
-
-    @NotNull(message = "Okul başlangıç tarihi boş olamaz (örn: 2021-08-16)")
+    @NotNull(message = "İşe giriş tarihi boş olamaz (örn: 2021-08-16)")
     @Column(columnDefinition = "DATE")
-    private LocalDate entryDate;
+    private LocalDate startDateOfWork;
 
     @Column(columnDefinition = "DATE")
-    private LocalDate graduationDate;
+    private LocalDate dismissalDate;
+
+    @NotNull(message = "İş çıkış bilgisi boş olamaz (örn: true veya false)")
+    private boolean isDismissed;
 
 }

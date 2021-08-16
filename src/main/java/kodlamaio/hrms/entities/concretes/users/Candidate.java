@@ -3,6 +3,8 @@ package kodlamaio.hrms.entities.concretes.users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.core.entites.User;
 import kodlamaio.hrms.entities.concretes.cvDetails.educations.Education;
+import kodlamaio.hrms.entities.concretes.cvDetails.jobExperiences.JobExperience;
+import kodlamaio.hrms.entities.concretes.cvDetails.languages.Language;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,5 +31,13 @@ public class Candidate extends User {
     @JsonIgnore
     @OneToMany(mappedBy = "candidate")
     private Set<Education> educations;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "candidate")
+    private Set<JobExperience> jobExperiences;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "candidate")
+    private Set<Language> languages;
 
 }

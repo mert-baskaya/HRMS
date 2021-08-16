@@ -1,6 +1,6 @@
 package kodlamaio.hrms.config;
 
-import kodlamaio.hrms.api.controllers.CandidateController;
+import kodlamaio.hrms.api.controllers.userControllers.CandidateController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,17 +1,16 @@
-package kodlamaio.hrms.api.controllers;
+package kodlamaio.hrms.api.controllers.userControllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.cvDetails.dtos.EducationDto;
+import kodlamaio.hrms.entities.concretes.cvDetails.educations.Education;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,7 +36,7 @@ public class CandidateController {
     }
 
     @PostMapping("/addEducationDetail")
-    public Result addEducationDetail(@RequestBody EducationDto educationDto){
-        return this.candidateService.addEducationDetail(educationDto);
+    public Result addEducationDetail(@RequestBody Education education){
+        return this.candidateService.addEducationDetail(education);
     }
 }
