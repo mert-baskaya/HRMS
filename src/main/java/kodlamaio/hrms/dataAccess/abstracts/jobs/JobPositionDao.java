@@ -1,4 +1,4 @@
-package kodlamaio.hrms.dataAccess.abstracts;
+package kodlamaio.hrms.dataAccess.abstracts.jobs;
 
 import kodlamaio.hrms.entities.concretes.jobs.JobPosition;
 

@@ -1,4 +1,4 @@
-package kodlamaio.hrms.dataAccess.abstracts;
+package kodlamaio.hrms.dataAccess.abstracts.cvs;
 
 import kodlamaio.hrms.entities.concretes.cvs.educations.Education;
 import org.springframework.data.jpa.repository.JpaRepository;

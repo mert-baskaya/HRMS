@@ -6,7 +6,7 @@ import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.core.validationServices.mailValidation.MailValidationService;
 import kodlamaio.hrms.core.validationServices.userValidation.UserNationalIdValidationService;
 import kodlamaio.hrms.core.dataAccess.UserDao;
-import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
+import kodlamaio.hrms.dataAccess.abstracts.cvs.EducationDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
 import kodlamaio.hrms.entities.concretes.cvs.educations.Education;
 import kodlamaio.hrms.entities.concretes.users.Candidate;

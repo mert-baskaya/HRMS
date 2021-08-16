@@ -4,7 +4,7 @@ import kodlamaio.hrms.business.abstracts.cvs.LanguageService;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.LanguageDao;
+import kodlamaio.hrms.dataAccess.abstracts.cvs.LanguageDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
 import kodlamaio.hrms.entities.concretes.cvs.languages.Language;
 import org.springframework.beans.factory.annotation.Autowired;

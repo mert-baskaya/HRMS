@@ -2,7 +2,7 @@ package kodlamaio.hrms.business.concretes.cvs;
 
 import kodlamaio.hrms.business.abstracts.cvs.EducationService;
 import kodlamaio.hrms.core.utilities.results.*;
-import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
+import kodlamaio.hrms.dataAccess.abstracts.cvs.EducationDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
 import kodlamaio.hrms.entities.concretes.cvs.educations.Education;
 import org.springframework.stereotype.Service;

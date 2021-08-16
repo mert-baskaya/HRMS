@@ -2,7 +2,7 @@ package kodlamaio.hrms.business.concretes.jobs;
 
 import kodlamaio.hrms.business.abstracts.jobs.JobPositonService;
 import kodlamaio.hrms.core.utilities.results.*;
-import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
+import kodlamaio.hrms.dataAccess.abstracts.jobs.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.jobs.JobPosition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
