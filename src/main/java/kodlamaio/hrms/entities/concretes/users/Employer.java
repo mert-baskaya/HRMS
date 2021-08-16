@@ -2,7 +2,7 @@ package kodlamaio.hrms.entities.concretes.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.core.entites.User;
-import kodlamaio.hrms.entities.concretes.JobPosting;
+import kodlamaio.hrms.entities.concretes.jobs.JobPosting;
 import lombok.*;
 
 import javax.persistence.*;

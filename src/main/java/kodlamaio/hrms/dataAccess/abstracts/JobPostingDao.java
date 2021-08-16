@@ -1,6 +1,6 @@
 package kodlamaio.hrms.dataAccess.abstracts;
 
-import kodlamaio.hrms.entities.concretes.JobPosting;
+import kodlamaio.hrms.entities.concretes.jobs.JobPosting;
 import kodlamaio.hrms.entities.concretes.dtos.JobPostingWithEmployerAndJobPositionDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

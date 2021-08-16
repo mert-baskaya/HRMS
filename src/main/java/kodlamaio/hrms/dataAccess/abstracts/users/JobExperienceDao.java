@@ -1,6 +1,6 @@
 package kodlamaio.hrms.dataAccess.abstracts.users;
 
-import kodlamaio.hrms.entities.concretes.cvDetails.jobExperiences.JobExperience;
+import kodlamaio.hrms.entities.concretes.cvs.jobExperiences.JobExperience;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

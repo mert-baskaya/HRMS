@@ -1,6 +1,6 @@
 package kodlamaio.hrms.core.validationServices.staffValidation;
 
-import kodlamaio.hrms.business.concretes.EmployerManager;
+import kodlamaio.hrms.business.concretes.users.EmployerManager;
 import kodlamaio.hrms.core.utilities.results.Result;
 import org.springframework.stereotype.Service;
 

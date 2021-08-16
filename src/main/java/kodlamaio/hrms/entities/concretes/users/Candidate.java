@@ -2,9 +2,9 @@ package kodlamaio.hrms.entities.concretes.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.core.entites.User;
-import kodlamaio.hrms.entities.concretes.cvDetails.educations.Education;
-import kodlamaio.hrms.entities.concretes.cvDetails.jobExperiences.JobExperience;
-import kodlamaio.hrms.entities.concretes.cvDetails.languages.Language;
+import kodlamaio.hrms.entities.concretes.cvs.educations.Education;
+import kodlamaio.hrms.entities.concretes.cvs.jobExperiences.JobExperience;
+import kodlamaio.hrms.entities.concretes.cvs.languages.Language;
 import lombok.*;
 
 import javax.persistence.*;
