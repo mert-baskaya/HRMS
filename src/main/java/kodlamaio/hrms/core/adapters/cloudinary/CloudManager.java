@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @Component
-public class CloudManager implements CloudService{
+public class CloudManager implements CloudService {
 
     //Burası aşırı havada, düzgünce öğrenmek gerek
 
@@ -31,24 +31,24 @@ public class CloudManager implements CloudService{
     public DataResult<Map<String, String>> upload(MultipartFile multipartFile) {
         File file;
         try {
-            file=convert(multipartFile);
-            Map<String, String> result=cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+            file = convert(multipartFile);
+            Map<String, String> result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
             file.delete();
             return new SuccessDataResult<>(result);
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return new ErrorDataResult<>("Dosya yuklenmedi.");
-        }    }
+        }
+    }
 
     public DataResult<Map> delete(String id) throws IOException {
-        Map result=cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
+        Map result = cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
         return new SuccessDataResult<>(result);
     }
 
     private File convert(MultipartFile multipartFile) throws IOException {
-        File file=new File(multipartFile.getOriginalFilename());
-        FileOutputStream stream=new FileOutputStream(file);
+        File file = new File(multipartFile.getOriginalFilename());
+        FileOutputStream stream = new FileOutputStream(file);
         stream.write(multipartFile.getBytes());
         stream.close();
         return file;

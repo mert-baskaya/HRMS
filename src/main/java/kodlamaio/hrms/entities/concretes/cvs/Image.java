@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -28,10 +29,11 @@ public class Image {
 
     private String publicId;
 
-    private LocalDateTime uploadDateTime;
+    //https://www.baeldung.com/java-zone-offset
+    private ZonedDateTime uploadDateTime;
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Candidate candidate;
 
 }

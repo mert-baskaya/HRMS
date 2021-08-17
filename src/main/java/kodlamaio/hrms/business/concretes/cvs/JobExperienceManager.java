@@ -3,7 +3,7 @@ package kodlamaio.hrms.business.concretes.cvs;
 import kodlamaio.hrms.business.abstracts.cvs.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
-import kodlamaio.hrms.dataAccess.abstracts.users.JobExperienceDao;
+import kodlamaio.hrms.dataAccess.abstracts.cvs.JobExperienceDao;
 import kodlamaio.hrms.entities.concretes.cvs.jobExperiences.JobExperience;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes.users;
 
 import kodlamaio.hrms.business.abstracts.users.CandidateService;
+import kodlamaio.hrms.core.adapters.cloudinary.CloudService;
 import kodlamaio.hrms.core.utilities.EmailChecker;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.core.validationServices.mailValidation.MailValidationService;
@@ -8,11 +9,14 @@ import kodlamaio.hrms.core.validationServices.userValidation.UserNationalIdValid
 import kodlamaio.hrms.core.dataAccess.UserDao;
 import kodlamaio.hrms.dataAccess.abstracts.cvs.EducationDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
+import kodlamaio.hrms.entities.concretes.cvs.Image;
 import kodlamaio.hrms.entities.concretes.cvs.educations.Education;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,14 +27,25 @@ public class CandidateManager implements CandidateService {
     private final EducationDao educationDao;
     private final UserNationalIdValidationService nationalIdValidationService;
     private final MailValidationService mailValidationService;
+    private final CloudService cloudService;
 
     @Autowired
-    public CandidateManager(CandidateDao candidateDao, UserDao userDao, EducationDao educationDao, UserNationalIdValidationService nationalIdValidationService, MailValidationService mailValidationService) {
+    public CandidateManager(CandidateDao candidateDao, UserDao userDao, EducationDao educationDao, UserNationalIdValidationService nationalIdValidationService, MailValidationService mailValidationService, CloudService cloudService) {
         this.candidateDao = candidateDao;
         this.userDao = userDao;
         this.educationDao = educationDao;
         this.nationalIdValidationService = nationalIdValidationService;
         this.mailValidationService = mailValidationService;
+        this.cloudService = cloudService;
+    }
+
+    @Override
+    public DataResult<Candidate> getById(int id) {
+        if(candidateDao.findById(id).isPresent()){
+            return new SuccessDataResult<>(candidateDao.getById(id));
+        }else{
+            return new ErrorDataResult<>("Kullanıcı bulunamadı");
+        }
     }
 
     @Override
