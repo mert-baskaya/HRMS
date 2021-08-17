@@ -27,16 +27,14 @@ public class CandidateManager implements CandidateService {
     private final EducationDao educationDao;
     private final UserNationalIdValidationService nationalIdValidationService;
     private final MailValidationService mailValidationService;
-    private final CloudService cloudService;
 
     @Autowired
-    public CandidateManager(CandidateDao candidateDao, UserDao userDao, EducationDao educationDao, UserNationalIdValidationService nationalIdValidationService, MailValidationService mailValidationService, CloudService cloudService) {
+    public CandidateManager(CandidateDao candidateDao, UserDao userDao, EducationDao educationDao, UserNationalIdValidationService nationalIdValidationService, MailValidationService mailValidationService) {
         this.candidateDao = candidateDao;
         this.userDao = userDao;
         this.educationDao = educationDao;
         this.nationalIdValidationService = nationalIdValidationService;
         this.mailValidationService = mailValidationService;
-        this.cloudService = cloudService;
     }
 
     @Override

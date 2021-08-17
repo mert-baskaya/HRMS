@@ -2,10 +2,14 @@ package kodlamaio.hrms.entities.concretes.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.core.entites.User;
+import kodlamaio.hrms.entities.concretes.cvs.CoverLetter;
 import kodlamaio.hrms.entities.concretes.cvs.Image;
 import kodlamaio.hrms.entities.concretes.cvs.educations.Education;
 import kodlamaio.hrms.entities.concretes.cvs.jobExperiences.JobExperience;
 import kodlamaio.hrms.entities.concretes.cvs.languages.Language;
+import kodlamaio.hrms.entities.concretes.cvs.links.GithubLink;
+import kodlamaio.hrms.entities.concretes.cvs.links.SocialLink;
+import kodlamaio.hrms.entities.concretes.cvs.skills.TechnicalSkill;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,7 +51,23 @@ public class Candidate extends User {
     private Set<Language> languages;
 
     @JsonIgnore
+    @OneToMany(mappedBy = "candidate")
+    private Set<SocialLink> socialLinks;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "candidate")
+    private Set<TechnicalSkill> technicalSkills;
+
+    @JsonIgnore
     @OneToOne(mappedBy = "candidate")
     private Image image;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "candidate")
+    private CoverLetter coverLetter;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "candidate")
+    private GithubLink githubLink;
 
 }
