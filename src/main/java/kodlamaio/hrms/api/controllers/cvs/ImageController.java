@@ -1,4 +1,4 @@
-package kodlamaio.hrms.api.controllers;
+package kodlamaio.hrms.api.controllers.cvs;
 
 import kodlamaio.hrms.business.abstracts.cvs.ImageService;
 import kodlamaio.hrms.core.utilities.results.Result;
