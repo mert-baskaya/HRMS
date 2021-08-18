@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes.cvs;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class CoverLetter {
     @NotBlank(message = "Ön yazı boş olamaz boş olamaz")
     private String summary;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id")
     private Candidate candidate;

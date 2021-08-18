@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes.cvs.skills;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class TechnicalSkill {
     @NotBlank(message = "Yetenek boş olamaz")
     private String skillName;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Candidate candidate;
