@@ -1,22 +1,20 @@
 package kodlamaio.hrms.business.concretes.users;
 
+import kodlamaio.hrms.business.abstracts.cvs.*;
+import kodlamaio.hrms.business.abstracts.cvs.links.GithubLinkService;
+import kodlamaio.hrms.business.abstracts.cvs.links.SocialLinkService;
 import kodlamaio.hrms.business.abstracts.users.CandidateService;
-import kodlamaio.hrms.core.adapters.cloudinary.CloudService;
 import kodlamaio.hrms.core.utilities.EmailChecker;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.core.validationServices.mailValidation.MailValidationService;
 import kodlamaio.hrms.core.validationServices.userValidation.UserNationalIdValidationService;
 import kodlamaio.hrms.core.dataAccess.UserDao;
-import kodlamaio.hrms.dataAccess.abstracts.cvs.EducationDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
-import kodlamaio.hrms.entities.concretes.cvs.Image;
-import kodlamaio.hrms.entities.concretes.cvs.educations.Education;
+import kodlamaio.hrms.entities.concretes.cvs.dtos.CVWithCandidateDto;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,17 +22,32 @@ public class CandidateManager implements CandidateService {
 
     private final CandidateDao candidateDao;
     private final UserDao userDao;
-    private final EducationDao educationDao;
     private final UserNationalIdValidationService nationalIdValidationService;
     private final MailValidationService mailValidationService;
 
+    private final EducationService educationService;
+    private final JobExperienceService jobExperienceService;
+    private final LanguageService languageService;
+    private final GithubLinkService githubLinkService;
+    private final SocialLinkService socialLinkService;
+    private final TechnicalSkillService technicalSkillService;
+    private final CoverLetterService coverLetterService;
+    private final ImageService imageService;
+
     @Autowired
-    public CandidateManager(CandidateDao candidateDao, UserDao userDao, EducationDao educationDao, UserNationalIdValidationService nationalIdValidationService, MailValidationService mailValidationService) {
+    public CandidateManager(CandidateDao candidateDao, UserDao userDao, UserNationalIdValidationService nationalIdValidationService, MailValidationService mailValidationService, EducationService educationService, JobExperienceService jobExperienceService, LanguageService languageService, GithubLinkService githubLinkService, SocialLinkService socialLinkService, TechnicalSkillService technicalSkillService, CoverLetterService coverLetterService, ImageService imageService) {
         this.candidateDao = candidateDao;
         this.userDao = userDao;
-        this.educationDao = educationDao;
         this.nationalIdValidationService = nationalIdValidationService;
         this.mailValidationService = mailValidationService;
+        this.educationService = educationService;
+        this.jobExperienceService = jobExperienceService;
+        this.languageService = languageService;
+        this.githubLinkService = githubLinkService;
+        this.socialLinkService = socialLinkService;
+        this.technicalSkillService = technicalSkillService;
+        this.coverLetterService = coverLetterService;
+        this.imageService = imageService;
     }
 
     @Override
@@ -77,9 +90,21 @@ public class CandidateManager implements CandidateService {
     }
 
     @Override
-    public Result addEducationDetail(Education education) {
-        educationDao.save(education);
-        return new SuccessResult("TODO");
+    public DataResult<CVWithCandidateDto> getCvById(int userId) {
+
+        CVWithCandidateDto cv = new CVWithCandidateDto();
+
+        cv.setCandidate(getById(userId).getData());
+        cv.setEducationSet(educationService.getEducationsByCandidate_IdOrderByEntryDateDesc(userId).getData());
+        cv.setJobExperienceSet(jobExperienceService.getJobExperiencesByCandidate_IdOrderByStartDateOfWorkStartDateOfWorkDesc(userId).getData());
+        cv.setLanguageSet(languageService.getByUserId(userId).getData());
+        cv.setGithubLink(githubLinkService.getbyUserId(userId).getData());
+        cv.setSocialLinkSet(socialLinkService.getByUserId(userId).getData());
+        cv.setTechnicalSkillSet(technicalSkillService.getByUserId(userId).getData());
+        cv.setCoverLetter(coverLetterService.getByUSerId(userId).getData());
+        cv.setImage(imageService.getByUserId(userId).getData());
+
+        return new SuccessDataResult<>(cv);
     }
 
     private boolean nullControl(Candidate candidate) {

@@ -12,7 +12,7 @@ public interface ImageService {
 
     DataResult<List<Image>> getAll();
     DataResult<Image> getById(int id);
-    DataResult<List<Image>> getByUserId(int id);
+    DataResult<Image> getByUserId(int id);
 
     Result add(MultipartFile multipartFile , int id);
     Result delete(int id) throws IOException;

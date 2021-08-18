@@ -5,18 +5,15 @@ import kodlamaio.hrms.business.abstracts.users.CandidateService;
 import kodlamaio.hrms.core.adapters.cloudinary.CloudService;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.cvs.ImageDao;
+import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
 import kodlamaio.hrms.entities.concretes.cvs.Image;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
-import org.aspectj.apache.bcel.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -25,13 +22,13 @@ public class ImageManager implements ImageService {
     // Bu alan https://github.com/htcoztrk'ten alıntı yapılarak yazıldı
 
     private final ImageDao imageDao;
-    private final CandidateService candidateService;
+    private final CandidateDao candidateDao;
     private final CloudService cloudService;
 
     @Autowired
-    public ImageManager(ImageDao imageDao, CandidateService candidateService, CloudService cloudService) {
+    public ImageManager(ImageDao imageDao, CandidateDao candidateDao, CloudService cloudService) {
         this.imageDao = imageDao;
-        this.candidateService = candidateService;
+        this.candidateDao = candidateDao;
         this.cloudService = cloudService;
     }
 
@@ -44,7 +41,7 @@ public class ImageManager implements ImageService {
         return new SuccessDataResult<>(this.imageDao.findById(id).get(),"resim:");
     }
     @Override
-    public DataResult<List<Image>> getByUserId(int id) {
+    public DataResult<Image> getByUserId(int id) {
         return new SuccessDataResult<>(this.imageDao.getByCandidate_Id(id));
     }
     @Override
@@ -53,7 +50,7 @@ public class ImageManager implements ImageService {
         if(!result.isSuccess()) {
             return new ErrorResult(result.getMessage());
         }
-        Candidate candidate = this.candidateService.getById(id).getData();
+        Candidate candidate = this.candidateDao.getById(id);
         Image image=new Image();
         image.setCandidate(candidate);
         image.setUrl(result.getData().get("url"));

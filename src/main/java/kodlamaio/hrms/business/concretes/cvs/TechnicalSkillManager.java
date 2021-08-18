@@ -1,24 +1,24 @@
 package kodlamaio.hrms.business.concretes.cvs;
 
 import kodlamaio.hrms.business.abstracts.cvs.TechnicalSkillService;
-import kodlamaio.hrms.business.abstracts.users.CandidateService;
-import kodlamaio.hrms.core.utilities.results.ErrorResult;
-import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.cvs.TechnicalSkillDao;
+import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
 import kodlamaio.hrms.entities.concretes.cvs.skills.TechnicalSkill;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TechnicalSkillManager implements TechnicalSkillService {
 
     private final TechnicalSkillDao technicalSkillDao;
-    private final CandidateService candidateService;
+    private final CandidateDao candidateDao;
 
-    public TechnicalSkillManager(TechnicalSkillDao technicalSkillDao, CandidateService candidateService) {
+    public TechnicalSkillManager(TechnicalSkillDao technicalSkillDao, CandidateDao candidateDao) {
         this.technicalSkillDao = technicalSkillDao;
-        this.candidateService = candidateService;
+        this.candidateDao = candidateDao;
     }
 
     @Override
@@ -30,15 +30,20 @@ public class TechnicalSkillManager implements TechnicalSkillService {
         //Şu anda çalışır fakat prensip olarak ekleme gerektiğinde
         // burayı modifiye etmem gerekeceğinden doğru kullanımı bu değil
 
-        if(candidateService.getById(id).isSuccess()){
-            Candidate candidate = candidateService.getById(id).getData();
+        if(candidateDao.existsById(id)){
+            Candidate candidate = candidateDao.getById(id);
             TechnicalSkill technicalSkill = new TechnicalSkill();
             technicalSkill.setSkillName(skillName);
             technicalSkill.setCandidate(candidate);
             technicalSkillDao.save(technicalSkill);
             return new SuccessResult("Başarılı");
+        }else{
+        return new ErrorResult("Kullanıcı bulunamadı");
         }
+    }
 
-        return new ErrorResult("Teknik yetenek eklenemedi");
+    @Override
+    public DataResult<List<TechnicalSkill>> getByUserId(int userId) {
+        return new SuccessDataResult<>(technicalSkillDao.getByCandidate_Id(userId));
     }
 }

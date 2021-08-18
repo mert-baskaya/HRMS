@@ -7,4 +7,6 @@ public interface GithubLinkDao extends JpaRepository<GithubLink, Integer> {
 
     boolean existsByUrl(String url);
 
+    GithubLink getByCandidate_Id(int id);
+
 }

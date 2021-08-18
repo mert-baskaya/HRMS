@@ -2,10 +2,9 @@ package kodlamaio.hrms.business.concretes.cvs.links;
 
 import kodlamaio.hrms.business.abstracts.cvs.links.GithubLinkService;
 import kodlamaio.hrms.business.abstracts.users.CandidateService;
-import kodlamaio.hrms.core.utilities.results.ErrorResult;
-import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.cvs.links.GithubLinkDao;
+import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
 import kodlamaio.hrms.entities.concretes.cvs.links.GithubLink;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import org.springframework.stereotype.Service;
@@ -13,12 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class GithubLinkManager implements GithubLinkService {
 
+    //Burada CandidateService çağrısı yapılıp CandidateManager'da da GithubLinkService çağrısı yapıldığında sonsuz döngü yapıyor
+    //Sanırım mecburen daolarla erişim yapmak durumunda kalacağım
     private final GithubLinkDao githubLinkDao;
-    private final CandidateService candidateService;
+    //private final CandidateService candidateService;
+    private final CandidateDao candidateDao;
 
-    public GithubLinkManager(GithubLinkDao githubLinkDao, CandidateService candidateService) {
+    public GithubLinkManager(GithubLinkDao githubLinkDao, CandidateDao candidateDao) {
         this.githubLinkDao = githubLinkDao;
-        this.candidateService = candidateService;
+        this.candidateDao = candidateDao;
     }
 
     @Override
@@ -27,8 +29,8 @@ public class GithubLinkManager implements GithubLinkService {
         if(githubLinkDao.existsByUrl(url)) return new ErrorResult("Bu URL daha önce sisteme kaydolmuş");
 
         //Bu tarz yapılarda try-cath olmayınca kaşıntı basıyor
-        if(candidateService.getById(candidateId).isSuccess()){
-            Candidate candidate = candidateService.getById(candidateId).getData();
+        if(candidateDao.existsById(candidateId)){
+            Candidate candidate = candidateDao.getById(candidateId);
             GithubLink githubLink = new GithubLink();
             githubLink.setUrl(url);
             githubLink.setCandidate(candidate);
@@ -36,5 +38,10 @@ public class GithubLinkManager implements GithubLinkService {
             return new SuccessResult("Başarılı");
         }
         return new ErrorResult("Github linki eklenemedi");
+    }
+
+    @Override
+    public DataResult<GithubLink> getbyUserId(int userId) {
+        return new SuccessDataResult<>(githubLinkDao.getByCandidate_Id(userId));
     }
 }

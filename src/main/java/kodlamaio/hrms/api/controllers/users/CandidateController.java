@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiOperation;
 import kodlamaio.hrms.business.abstracts.users.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.cvs.educations.Education;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -35,8 +34,8 @@ public class CandidateController {
         return this.candidateService.add(candidate);
     }
 
-    @PostMapping("/addEducationDetail")
-    public Result addEducationDetail(@RequestBody Education education){
-        return this.candidateService.addEducationDetail(education);
+    @PostMapping("/getCvById")
+    public Result getCvById(@RequestParam int userId){
+        return this.candidateService.getCvById(userId);
     }
 }

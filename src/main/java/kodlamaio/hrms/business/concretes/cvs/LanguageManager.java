@@ -1,14 +1,14 @@
 package kodlamaio.hrms.business.concretes.cvs;
 
 import kodlamaio.hrms.business.abstracts.cvs.LanguageService;
-import kodlamaio.hrms.core.utilities.results.ErrorResult;
-import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.cvs.LanguageDao;
 import kodlamaio.hrms.dataAccess.abstracts.users.CandidateDao;
 import kodlamaio.hrms.entities.concretes.cvs.languages.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LanguageManager implements LanguageService {
@@ -31,5 +31,10 @@ public class LanguageManager implements LanguageService {
         }else{
             return new ErrorResult("Kullanıcı bulunamadı");
         }
+    }
+
+    @Override
+    public DataResult<List<Language>> getByUserId(int userId) {
+        return new SuccessDataResult<>(languageDao.getByCandidate_Id(userId));
     }
 }
