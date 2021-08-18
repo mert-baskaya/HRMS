@@ -4,6 +4,7 @@ import kodlamaio.hrms.business.abstracts.cvs.CoverLetterService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.cvs.CoverLetter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,6 +13,7 @@ public class CoverLetterController {
 
     private final CoverLetterService coverLetterService;
 
+    @Autowired
     public CoverLetterController(CoverLetterService coverLetterService) {
         this.coverLetterService = coverLetterService;
     }
