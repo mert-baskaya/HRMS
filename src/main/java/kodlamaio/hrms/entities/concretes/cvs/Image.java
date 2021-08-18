@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes.cvs;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kodlamaio.hrms.core.entites.User;
 import kodlamaio.hrms.entities.concretes.users.Candidate;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class Image {
     //https://www.baeldung.com/java-zone-offset
     private ZonedDateTime uploadDateTime;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id")
     private Candidate candidate;
